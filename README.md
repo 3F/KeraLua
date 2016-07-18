@@ -7,6 +7,13 @@ This **KeraLua** - has been replaced on new **[LunaRoad](https://github.com/3F/L
 
 ## LunaRoad
 
+Lua C API for .NET 
+
+**LunaRoad** represents a fully new flexible platform to work with Lua.
+
+[![Build status](https://ci.appveyor.com/api/projects/status/94y78phdvkoi5oda/branch/master?svg=true)](https://ci.appveyor.com/project/3Fs/lunaroad/branch/master)
+[![NuGet package](https://img.shields.io/nuget/v/LunaRoad.svg)](https://www.nuget.org/packages/LunaRoad/) 
+
 Easy to start:
 
 ```csharp
