@@ -1,36 +1,61 @@
-KeraLua
-=======
+[ obsolete ]
 
-[![Build Status](https://travis-ci.org/NLua/KeraLua.svg?branch=master)](https://travis-ci.org/NLua/KeraLua)
+This **KeraLua** - has been replaced on new **[LunaRoad](https://github.com/3F/LunaRoad)** !
 
-C# KopiLua compatible API for native bindings of Lua/LuaJIT (compatible with iOS/Mac/Android/.NET)
-
-Before build fetch the submodules:
-
-	git submodule update --init --recursive
-
-  *  Contributing
---------------
- * KeraLua is using the Mono Code-Style http://www.mono-project.com/Coding_Guidelines .
- * Please, do not change the line-end or re-indent the code.
- * Run the tests before push.
- * Avoid to push unneeded style changes (unless is really needed) renaming, move code.
+*Use `master` branch if you search modifications for KeraLua*
 
 
-iOS Build
----------
-On the Mac/Terminal:
+## LunaRoad
 
+Easy to start:
 
-	make -f Makefile.iOS
+```csharp
+using(var l = new Lua<ILua51>("Lua51.dll")) {
+    // ...
+}
+```
 
-Windows Build
---------------
+Flexible binding with any exported function of library:
 
-You will need the [CMake](http://cmake.org) to build the Lua library.
+```csharp
+// custom binding:
+using(ILua l = new Lua("Lua52.dll")) {
+    l.bind<Action<LuaState, LuaCFunction, int>>("pushcclosure")(L, onProc, 0);
+    l.bind<Action<LuaState, string>>("setglobal")(L, "onKeyDown");
+    //or any exported function like: bindFunc<...>("_full_name_")
+    ...
+    double num = l.bind<Func<LuaState, int, double>>("tonumber")(L, 7);
+}
 
-On Command Prompt:
+// API layer:
+using(var l = new Lua<ILua53>("Lua53.dll")) {
+    l.API.pushcclosure(L, onProc, 0); // ILua53 lua = l.API
+    l.API.setglobal(L, "onKeyDown");
+}
+```
 
-	Makefile.Win32.bat
-	msbuild KeraLua.sln /p:Configuration=Release
+Powerful work with several libraries:
 
+```csharp
+using(var lSpec = new Lua("SpecLib.dll")) {
+    using(ILua l = new Lua<ILua52>("Lua52.dll")) {
+        //...
+    }
+}
+```
+
+Lazy loading:
+
+```csharp
+using(var l = new Lua<ILua51>(
+                    new LuaConfig("Lua51.dll") {
+                        LazyLoading = true
+                    }))
+{
+    ...
+}
+```
+
+[and more ...](https://github.com/3F/LunaRoad)
+
+* https://github.com/3F/LunaRoad
