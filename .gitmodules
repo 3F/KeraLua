@@ -1,0 +1,6 @@
+[submodule "LunaRoad"]
+	path = LunaRoad
+	url = https://github.com/3F/LunaRoad.git
+[submodule "Conari"]
+	path = Conari
+	url = https://github.com/3F/Conari.git
